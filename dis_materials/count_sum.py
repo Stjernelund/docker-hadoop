@@ -10,8 +10,6 @@ class MRCountSum(MRJob):
             print(email_domain)
             for i,char in enumerate(email_domain):
                 if char != '.' and char != '-' and not char.isnumeric() and not char.isalpha():
-                    print(char)
-                    print("her")
                     email_domain = email_domain[0:i]
                     break
             if len(email_domain) == 0:
