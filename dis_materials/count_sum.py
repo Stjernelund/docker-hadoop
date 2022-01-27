@@ -2,10 +2,18 @@ from mrjob.job import MRJob
 
 class MRCountSum(MRJob):
 
-    def mapper(self, _, line):
+    def mapper(line):
         line = line.strip() # remove leading and trailing whitespace
-        if line.find("From:") == 0:
-            email_domain = line[line.find("@")+1:line.find(">")]
+        if line.find("From:") == 0 and line.find("@") != -1:
+            end_index = -1
+            email_domain = line[line.find("@")+1:end_index]
+            print(email_domain)
+            for i,char in enumerate(email_domain):
+                if char != '.' and char != '-' and not char.isnumeric() and not char.isalpha():
+                    print(char)
+                    print("her")
+                    email_domain = email_domain[0:i]
+                    break
             if len(email_domain) == 0:
                 email_domain == "empty"
             yield email_domain, 1
