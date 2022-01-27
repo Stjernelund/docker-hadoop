@@ -7,7 +7,6 @@ class MRCountSum(MRJob):
         if line.find("From:") == 0 and line.find("@") != -1:
             end_index = -1
             email_domain = line[line.find("@")+1:end_index]
-            print(email_domain)
             for i,char in enumerate(email_domain):
                 if char != '.' and char != '-' and not char.isnumeric() and not char.isalpha():
                     email_domain = email_domain[0:i]
